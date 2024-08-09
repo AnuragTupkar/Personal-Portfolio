@@ -29,7 +29,10 @@ const Home = () => {
           </div>
         </div>
         <div className="">
-          <img className="h-[40.25rem] w-min-[100%]" src={HomePhoto} />
+          <div className="h-[40.25rem] w-min-[100%]">
+
+          <img className="" src={HomePhoto} />
+          </div>
         </div>
       </div>
       </div>
