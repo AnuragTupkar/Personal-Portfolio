@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.normalFont{
+  font-family: 'maven-pro';
+  font-weight: 900;
+}
+
+.mainFont{
+  font-family: 'space-grotesk';
+  font-weight: 900;
+}
