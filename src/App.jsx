@@ -1,15 +1,21 @@
-import { useState } from 'react'
-import Home from './Pages/Home'
-import './App.css'
+// App.js or ParentComponent.js
+import React, { useState } from 'react';
+import Intro from './components/Intro';
+import Home from './Pages/Home';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [introComplete, setIntroComplete] = useState(false);
+
+  const handleIntroComplete = () => {
+    setIntroComplete(true);
+  };
 
   return (
     <>
-      <Home/>
+      {!introComplete && <Intro onIntroComplete={handleIntroComplete} />}
+      {introComplete && <Home />}
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
