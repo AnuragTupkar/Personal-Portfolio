@@ -7,14 +7,15 @@ import HomePhoto from "../assets/HomePhoto.png";
 const Home = () => {
   return (
     <>
-      <Navbars />
+ 
+    <Navbars />
       <motion.div
         className="container mx-auto p-4 flex flex-col md:flex-row items-center"
         initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
+        animate={{ opacity: 1, y: -10 }}
         transition={{ duration: 1 }}
       >
-        <div className="left-side w-full md:w-1/2 mb-8 md:mb-0">
+        <div className="left-side w-full  md:w-1/2 mb-8 md:mb-0">
           <img src={HomePhoto} alt="Home" className="w-full h-auto" />
         </div>
 
@@ -38,6 +39,8 @@ const Home = () => {
           </p>
         </div>
       </motion.div>
+      
+     
     </>
   );
 };
