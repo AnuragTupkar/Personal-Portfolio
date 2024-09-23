@@ -9,7 +9,8 @@ const Home = () => {
     <>
  
     <Navbars />
-      <motion.div
+    <div className="">
+    <motion.div
         className="container mx-auto p-4 flex flex-col md:flex-row items-center"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: -10 }}
@@ -39,6 +40,8 @@ const Home = () => {
           </p>
         </div>
       </motion.div>
+    </div>
+     
       
      
     </>

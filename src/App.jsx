@@ -14,7 +14,8 @@ const App = () => {
     <>
       {!introComplete && <Intro onIntroComplete={handleIntroComplete} />}
       {introComplete && <Home />}
-      <About/>
+      {introComplete && <About/>}
+      
     </>
   );
 };
