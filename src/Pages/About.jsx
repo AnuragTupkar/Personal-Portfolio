@@ -22,7 +22,7 @@ const About = () => {
         animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
         transition={{ duration: 0.8 }} // Animate when hovered
       >
-        <p className="text-white bg-black inline-block p-2 text-3xl md:text-4xl font-bold lg:text-6xl rounded-md">
+        <p className="text-white bg-black inline-block p-2 text-3xl md:text-4xl font-bold lg:text-6xl  rounded-md">
           About Me
         </p>
 
