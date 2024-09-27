@@ -8,8 +8,8 @@ const Home = () => {
   return (
     <>
  
-    <Navbars />
-    <div className="">
+
+    <div className="w-screen">
     <motion.div
         className="container mx-auto p-4 flex flex-col md:flex-row items-center"
         initial={{ opacity: 0, y: 50 }}

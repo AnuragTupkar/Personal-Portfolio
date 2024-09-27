@@ -9,7 +9,8 @@ function Navbar() {
   };
 
   return (
-    <div className="normalFont mt-8 mb-6 mx-5 lg:mx-28 ">
+    <div className="w-screen">
+ <div className="normalFont mt-8 mb-6 mx-5 lg:mx-28 ">
       <div className="flex justify-between items-center">
         <motion.div 
           className="logo text-xl"
@@ -70,6 +71,8 @@ function Navbar() {
         </motion.div>
       )}
     </div>
+    </div>
+   
   );
 }
 
