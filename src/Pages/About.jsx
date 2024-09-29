@@ -26,7 +26,7 @@ const About = () => {
   }, []);
 
   return (
-    <div className="flex flex-col lg:flex-row h-screen w-screen px-4 lg:px-0">
+    <div className="flex flex-col lg:flex-row min-h-screen w-screen px-4 lg:px-0">
       {/* Text Section with Animation */}
       <motion.div
         className="w-full lg:w-[50%] flex flex-col justify-center items-center lg:items-start mt-10 lg:mt-20 lg:ml-28 text-center lg:text-left"
