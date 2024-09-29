@@ -1,21 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import GetInTouchPic from "../assets/GetInTouch.png";
 import { SocialIcon } from "react-social-icons";
 import { motion } from "framer-motion";
 
 const GetInTouch = () => {
-  const [isVisible, setIsVisible] = useState(false); // Use to control visibility
+  const [isVisible, setIsVisible] = useState(false);
+  const getInTouchRef = useRef(null);
 
-  const handleMouseEnter = () => {
-    setIsVisible(true);
-  };
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.unobserve(entry.target); // Stop observing after visible
+          }
+        });
+      },
+      { threshold: 0.3 } // Trigger when 30% is visible
+    );
+
+    if (getInTouchRef.current) {
+      observer.observe(getInTouchRef.current);
+    }
+
+    return () => {
+      if (getInTouchRef.current) {
+        observer.unobserve(getInTouchRef.current);
+      }
+    };
+  }, []);
 
   return (
-    <div className="bg-gray-100 pt-16">
-      <div
-        className="main-div flex flex-col md:flex-row bg-gray-100 p-10 w-screen mt-16 md:h-auto"
-        onMouseEnter={handleMouseEnter}
-      >
+    <div ref={getInTouchRef} className="bg-gray-100 pt-16">
+      <div className="main-div flex flex-col md:flex-row bg-gray-100 p-10 w-screen mt-16 md:h-auto">
         {/* Left Image Section */}
         <motion.div
           className="flex-1 md:block hidden"
@@ -40,6 +58,8 @@ const GetInTouch = () => {
           <h2 className="text-2xl font-bold mb-5 bg-black md:inline text-white p-4 rounded justify-center flex">
             GET IN TOUCH
           </h2>
+
+          {/* Image for small screens */}
           <div className="flex-1 md:hidden">
             <img
               src={GetInTouchPic}
@@ -47,11 +67,13 @@ const GetInTouch = () => {
               className="w-full h-auto rounded-lg"
             />
           </div>
+
           <p className="mb-5 mt-8">
             Hello there! If you have any questions, collaboration ideas, or just
             want to say hi, feel free to get in touch with me. I'd be thrilled
             to hear from you!
           </p>
+
           <form>
             <div className="mb-4">
               <label htmlFor="name" className="block text-sm font-medium mb-2">
@@ -64,6 +86,7 @@ const GetInTouch = () => {
                 placeholder="Enter your name"
               />
             </div>
+
             <div className="mb-4">
               <label htmlFor="email" className="block text-sm font-medium mb-2">
                 Your Email
@@ -75,6 +98,7 @@ const GetInTouch = () => {
                 placeholder="Enter your email"
               />
             </div>
+
             <div className="mb-4">
               <label htmlFor="phone" className="block text-sm font-medium mb-2">
                 Your Phone no.
@@ -86,6 +110,7 @@ const GetInTouch = () => {
                 placeholder="Enter your phone number"
               />
             </div>
+
             <div className="mb-4">
               <label
                 htmlFor="message"
@@ -100,19 +125,23 @@ const GetInTouch = () => {
                 rows="4"
               />
             </div>
-            <div className="md:flex">
-              <div className="w-full justify-center flex md:block">
-                <button className="bg-black text-white rounded-lg px-4 py-2 hover:bg-blue-600 justify-center md:mt-6">
+
+            <div className="md:flex md:items-center">
+  
+              <div className="w-full flex justify-center md:justify-start mb-4 md:mb-0">
+                <button className="bg-black text-white rounded-lg px-6 py-2 hover:bg-blue-600">
                   SEND
                 </button>
               </div>
 
-              <div className="flex w-[100%] md:justify-end mt-4 justify-center ">
-                <SocialIcon url="https://www.instagram.com" className="mx-2 " />
-                <SocialIcon url="https://www.github.com" className="mx-2" />
-                <SocialIcon url="mailto:example@email.com" className="mx-2" />
-                <SocialIcon url="https://www.twitter.com" className="mx-2" />
-                <SocialIcon url="https://www.linkedin.com" className="mx-2" />
+      
+              <div className="flex gap-4 justify-center md:justify-end w-full md:w-auto flex-nowrap">
+                <div className="hidden md:block"><SocialIcon className="hidden md:block"url="https://www.instagram.com" /></div>
+                
+                <SocialIcon url="https://www.github.com" />
+                <SocialIcon url="mailto:example@email.com" />
+                <SocialIcon url="https://www.twitter.com" />
+                <SocialIcon url="https://www.linkedin.com" />
               </div>
             </div>
           </form>

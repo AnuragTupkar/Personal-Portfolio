@@ -1,19 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Portfolio from "../assets/Portfolio.png";
 import { motion } from "framer-motion";
 
 const Work = () => {
-  const [isVisible, setIsVisible] = useState(false); // Use to control visibility
+  const [isVisible, setIsVisible] = useState(false);
+  const workRef = useRef(null);
 
-  const handleMouseEnter = () => {
-    setIsVisible(true);
-  };
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.unobserve(entry.target); // Optional: Stop observing after becoming visible
+          }
+        });
+      },
+      { threshold: 0.3 } // Trigger when 30% of the element is visible
+    );
+
+    if (workRef.current) {
+      observer.observe(workRef.current);
+    }
+
+    return () => {
+      if (workRef.current) {
+        observer.unobserve(workRef.current);
+      }
+    };
+  }, []);
 
   return (
-    <div
-      className="flex flex-col md:flex-row h-screen w-screen bg-[#B9B6B6]"
-      onMouseEnter={handleMouseEnter}
-    >
+    <div ref={workRef} className="flex flex-col md:flex-row h-screen w-screen bg-[#B9B6B6]">
       {/* Image Section */}
       <motion.div
         className="w-full md:w-[60%] flex justify-center md:justify-end items-center"
@@ -45,6 +63,7 @@ const Work = () => {
           <span className="bg-black p-2 rounded-md">MY WORKS</span>
         </motion.h1>
 
+        {/* Image for smaller screens */}
         <motion.img
           src={Portfolio}
           alt="Portfolio Snapshot"
@@ -102,7 +121,7 @@ const Work = () => {
           animate={isVisible ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
           transition={{ duration: 0.5 }}
         >
-          TECHSTACK USED
+          TECH STACK USED
         </motion.h1>
         <motion.div
           className="h-24 bg-white mt-8 w-[100%] mx-auto"
