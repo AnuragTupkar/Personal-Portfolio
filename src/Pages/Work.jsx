@@ -31,7 +31,7 @@ const Work = () => {
   }, []);
 
   return (
-    <div ref={workRef} className="flex flex-col md:flex-row h-screen w-screen bg-[#B9B6B6]">
+    <div ref={workRef} className="flex flex-col md:flex-row  w-screen bg-[#B9B6B6]">
       {/* Image Section */}
       <motion.div
         className="w-full md:w-[60%] flex justify-center md:justify-end items-center"
