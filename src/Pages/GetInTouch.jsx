@@ -129,7 +129,7 @@ const GetInTouch = () => {
             <div className="md:flex md:items-center">
   
               <div className="w-full flex justify-center md:justify-start mb-4 md:mb-0">
-                <button className="bg-black text-white rounded-lg px-6 py-2 hover:bg-blue-600">
+                <button className="bg-black text-white rounded-lg px-6 py-2 hover:bg-white hover:text-black hover:outline hover:outline-1">
                   SEND
                 </button>
               </div>

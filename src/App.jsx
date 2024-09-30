@@ -6,6 +6,7 @@ import About from "./Pages/About";
 import Work from "./Pages/Work";
 import Navbar from "./components/Navbars";
 import GetInTouch from "./Pages/GetInTouch";
+import { Route, Routes } from "react-router-dom";
 const App = () => {
   const [introComplete, setIntroComplete] = useState(false);
 
@@ -15,7 +16,7 @@ const App = () => {
 
   return (
     <>
-      <div className="w-screen overflow-hidden ">
+      <div className="w-full overflow-hidden ">
         {!introComplete && <Intro onIntroComplete={handleIntroComplete} />}
         {introComplete && <Navbar />}
         {introComplete && <Home />}
@@ -23,6 +24,9 @@ const App = () => {
         {introComplete && <Work />}
         {introComplete && <GetInTouch />}
       </div>
+      <Routes>
+        <Route to="/work" Component={<Work/>}/>
+      </Routes>
     </>
   );
 };
