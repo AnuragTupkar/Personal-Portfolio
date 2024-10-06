@@ -7,6 +7,7 @@ import Work from "./Pages/Work";
 import Navbar from "./components/Navbars";
 import GetInTouch from "./Pages/GetInTouch";
 import { Route, Routes } from "react-router-dom";
+import Works from "./Pages/Works";
 const App = () => {
   const [introComplete, setIntroComplete] = useState(false);
 
@@ -21,6 +22,7 @@ const App = () => {
         {introComplete && <Navbar />}
         {introComplete && <Home />}
         {introComplete && <About />}
+        {introComplete && <Works />}
         {introComplete && <Work />}
         {introComplete && <GetInTouch />}
       </div>
