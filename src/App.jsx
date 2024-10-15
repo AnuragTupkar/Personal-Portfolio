@@ -22,7 +22,7 @@ const App = () => {
         {introComplete && <Navbar />}
         {introComplete && <Home />}
         {introComplete && <About />}
-        {introComplete && <Works />}
+        {/* {introComplete && <Works />} */}
         {introComplete && <Work />}
         {introComplete && <GetInTouch />}
       </div>

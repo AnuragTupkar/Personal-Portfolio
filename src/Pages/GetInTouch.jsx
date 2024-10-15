@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 
 const GetInTouch = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false); // New state for pop-up
   const getInTouchRef = useRef(null);
 
   useEffect(() => {
@@ -30,6 +31,22 @@ const GetInTouch = () => {
       }
     };
   }, []);
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevent the form from redirecting
+    setFormSubmitted(true); // Show pop-up after submission
+
+    // You can also send the form data here using fetch or any other method if needed
+
+    // Reset the form after submission (optional)
+    e.target.reset();
+  };
+
+  // Close pop-up after user clicks 'OK'
+  const closePopup = () => {
+    setFormSubmitted(false);
+  };
 
   return (
     <div ref={getInTouchRef} className="bg-gray-100 pt-16">
@@ -74,7 +91,13 @@ const GetInTouch = () => {
             to hear from you!
           </p>
 
-          <form>
+          <form
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            onSubmit={handleSubmit} // Handle form submission here
+          >
+            <input type="hidden" name="form-name" value="contact" />
             <div className="mb-4">
               <label htmlFor="name" className="block text-sm font-medium mb-2">
                 Your Name
@@ -82,8 +105,10 @@ const GetInTouch = () => {
               <input
                 type="text"
                 id="name"
+                name="name"
                 className="border border-gray-300 rounded-lg w-full p-2"
                 placeholder="Enter your name"
+                required
               />
             </div>
 
@@ -94,8 +119,10 @@ const GetInTouch = () => {
               <input
                 type="email"
                 id="email"
+                name="email"
                 className="border border-gray-300 rounded-lg w-full p-2"
                 placeholder="Enter your email"
+                required
               />
             </div>
 
@@ -106,20 +133,19 @@ const GetInTouch = () => {
               <input
                 type="tel"
                 id="phone"
+                name="phone"
                 className="border border-gray-300 rounded-lg w-full p-2"
                 placeholder="Enter your phone number"
               />
             </div>
 
             <div className="mb-4">
-              <label
-                htmlFor="message"
-                className="block text-sm font-medium mb-2"
-              >
+              <label htmlFor="message" className="block text-sm font-medium mb-2">
                 Your Message
               </label>
               <textarea
                 id="message"
+                name="message"
                 className="border border-gray-300 rounded-lg w-full p-2"
                 placeholder="Type your message here..."
                 rows="4"
@@ -127,17 +153,20 @@ const GetInTouch = () => {
             </div>
 
             <div className="md:flex md:items-center">
-  
               <div className="w-full flex justify-center md:justify-start mb-4 md:mb-0">
-                <button className="bg-black text-white rounded-lg px-6 py-2 hover:bg-white hover:text-black hover:outline hover:outline-1">
+                <button
+                  type="submit"
+                  className="bg-black text-white rounded-lg px-6 py-2 hover:bg-white hover:text-black hover:outline hover:outline-1"
+                >
                   SEND
                 </button>
               </div>
 
-      
               <div className="flex gap-4 justify-center md:justify-end w-full md:w-auto flex-nowrap">
-                <div className="hidden md:block"><SocialIcon className="hidden md:block"url="https://www.instagram.com" /></div>
-                
+                <div className="hidden md:block">
+                  <SocialIcon className="hidden md:block" url="https://www.instagram.com" />
+                </div>
+
                 <SocialIcon url="https://www.github.com" />
                 <SocialIcon url="mailto:example@email.com" />
                 <SocialIcon url="https://www.twitter.com" />
@@ -147,6 +176,22 @@ const GetInTouch = () => {
           </form>
         </motion.div>
       </div>
+
+      {/* Pop-up for form submission */}
+      {formSubmitted && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <h3 className="text-xl font-bold mb-4">Thank you!</h3>
+            <p>Your message has been successfully sent. I will get back to you soon!</p>
+            <button
+              className="mt-4 px-4 py-2 bg-black text-white rounded"
+              onClick={closePopup}
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
