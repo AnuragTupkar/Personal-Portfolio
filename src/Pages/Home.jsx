@@ -13,7 +13,7 @@ const Home = () => {
           animate={{ opacity: 1, y: -10 }}
           transition={{ duration: 1 }}
         >
-          <div className="left-side w-full md:w-1/2 mb-8 md:mb-0 md:ml-[-1.8rem]">
+          <div className="left-side w-full md:w-1/2 mb-8 md:mb-0 md:ml-[5.8rem]">
             <img 
               src={HomePhoto} 
               alt="Home" 
